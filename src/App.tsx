@@ -9,6 +9,8 @@ import NavBar from "./components/NavBar";
 import Updater from "./components/Updater";
 import FormComponent from "./components/FormComponent";
 import ExpenseTracker from "./components/ExpenseTracker";
+import ExpenseTable from "./expense-tracker/components/ExpenseTable";
+import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
 
 /* function App() {
 	let items = [
@@ -106,7 +108,25 @@ import ExpenseTracker from "./components/ExpenseTracker";
 }*/
 
 function App() {
-	return <ExpenseTracker></ExpenseTracker>;
+	const [Expense_data, setExpense_data] = useState([
+		{ id: 1, description: "apple", amount: 34, category: "groceries" },
+		{ id: 2, description: "orange", amount: 24, category: "groceries" },
+		{ id: 3, description: "fig", amount: 84, category: "groceries" },
+		{ id: 4, description: "Mango", amount: 40, category: "groceries" },
+	]);
+	return (
+		<>
+			<ExpenseTracker></ExpenseTracker>
+
+			<ExpenseFilter></ExpenseFilter>
+
+			<ExpenseTable
+				expenses={Expense_data}
+				onDelete={(id) =>
+					setExpense_data(Expense_data.filter((e) => e.id !== id))
+				}></ExpenseTable>
+		</>
+	);
 }
 
 export default App;

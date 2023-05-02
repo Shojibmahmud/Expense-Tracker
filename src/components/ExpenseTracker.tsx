@@ -76,39 +76,6 @@ const ExpenseTracker = () => {
 			<button className="btn btn-primary" type="submit">
 				Submit
 			</button>
-			<div className="mb-3">
-				<select
-					className="form-select form-select-lg mb-3"
-					aria-label=".form-select-lg example">
-					<option selected>All Categories</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
-				</select>
-			</div>
-
-			<div>
-				<table className="table">
-					<thead>
-						<tr>
-							<th>Description</th>
-							<th>Amount</th>
-							<th>Category</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Rice</td>
-							<td>Utilities</td>
-							<td>Entertainment</td>
-							<td>
-								<button className="btn btn-danger">Delete</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
 		</form>
 	);
 };
