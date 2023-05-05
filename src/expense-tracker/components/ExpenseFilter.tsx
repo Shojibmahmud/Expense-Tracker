@@ -1,15 +1,22 @@
-import React from "react";
+import all_categories from "../Categories";
 
-const ExpenseFilter = () => {
+interface Props {
+	onSelectCategory: (category: string) => void;
+}
+
+const ExpenseFilter = ({ onSelectCategory }: Props) => {
 	return (
 		<div className="mb-3">
 			<select
 				className="form-select form-select-lg mb-3"
-				aria-label=".form-select-lg example">
-				<option>All Categories</option>
-				<option value="groceries">Groceries</option>
-				<option value="utilites">Utilities</option>
-				<option value="entertainment">Entertainment</option>
+				aria-label=".form-select-lg example"
+				onChange={(event) => onSelectCategory(event.target.value)}>
+				<option value="">All Categories</option>
+				{all_categories.map((cate) => (
+					<option key={cate} value={cate}>
+						{cate}
+					</option>
+				))}
 			</select>
 		</div>
 	);

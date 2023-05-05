@@ -11,6 +11,7 @@ import FormComponent from "./components/FormComponent";
 import ExpenseTracker from "./components/ExpenseTracker";
 import ExpenseTable from "./expense-tracker/components/ExpenseTable";
 import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
+import ExpenseForm from "./expense-tracker/components/ExpenseForm";
 
 /* function App() {
 	let items = [
@@ -108,20 +109,33 @@ import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
 }*/
 
 function App() {
+	const [SelectedCategory, setCategory] = useState("");
 	const [Expense_data, setExpense_data] = useState([
 		{ id: 1, description: "apple", amount: 34, category: "groceries" },
-		{ id: 2, description: "orange", amount: 24, category: "groceries" },
+		{ id: 2, description: "orange", amount: 24, category: "utilites" },
 		{ id: 3, description: "fig", amount: 84, category: "groceries" },
-		{ id: 4, description: "Mango", amount: 40, category: "groceries" },
+		{ id: 4, description: "Mango", amount: 40, category: "entertainment" },
 	]);
+
+	const visibleCategory = SelectedCategory
+		? Expense_data.filter((e) => e.category === SelectedCategory)
+		: Expense_data;
 	return (
 		<>
-			<ExpenseTracker></ExpenseTracker>
+			{/* <ExpenseTracker></ExpenseTracker> */}
+			<ExpenseForm
+				onSubmit={(data) =>
+					setExpense_data([
+						...Expense_data,
+						{ ...data, id: Expense_data.length + 1 },
+					])
+				}></ExpenseForm>
 
-			<ExpenseFilter></ExpenseFilter>
+			<ExpenseFilter
+				onSelectCategory={(category) => setCategory(category)}></ExpenseFilter>
 
 			<ExpenseTable
-				expenses={Expense_data}
+				expenses={visibleCategory}
 				onDelete={(id) =>
 					setExpense_data(Expense_data.filter((e) => e.id !== id))
 				}></ExpenseTable>
